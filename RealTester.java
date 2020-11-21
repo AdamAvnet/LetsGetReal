@@ -28,7 +28,7 @@ public class RealTester {
 		System.out.println("Second RationalNumber: " + num1);
 		System.out.println("Addition Test (should be 5/4): " + num.add(num1));
 		System.out.println("Addition Test 2 (should be 23/12): " + num.add(num2));
-		System.out.println("Subtraction Test (should be 0/1): " + num3.subtract(num3));
+		System.out.println("Subtraction Test (should be 0): " + num3.subtract(num3));
 		System.out.println("Subtraction Test 2 (should be 2/3): " + num.subtract(num1));
 		System.out.println("Reduce Test (should be -105/13): " + num4.add(num5));
 		System.out.println("Multiplication Test (should be 5/6): " + num.multiply(num1));

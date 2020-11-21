@@ -8,18 +8,7 @@ public class RationalNumber extends RealNumber {
 		numerator = nume;
 		denominator = deno;
 
-		if(denominator == 0){
-			numerator = 0;
-			denominator = 1;
-		}
-		if(denominator < 0){
-			numerator = numerator * -1;
-			denominator = denominator * -1;
-		}
-
-		int cd = gcd(numerator, denominator);
-		numerator = numerator / cd;
-		denominator = denominator / cd;
+		reduce();
 	}
 
 	public double getValue(){
@@ -70,23 +59,26 @@ public class RationalNumber extends RealNumber {
 	}
 
 	private void reduce(){
-		if(denominator < 0){
-			denominator = denominator * -1;
-			numerator = numerator * -1;
-		}
-		if (numerator == 0){
+		if(denominator == 0){
+			numerator = 0;
 			denominator = 1;
-		}else{
-			numerator = numerator / gcd(numerator, denominator);
-			denominator = denominator / gcd(numerator, denominator);
 		}
+
+		if(denominator < 0){
+			numerator = numerator * -1;
+			denominator = denominator * -1;
+		}
+
+		int cd = gcd(numerator, denominator);
+		numerator = numerator / cd;
+		denominator = denominator / cd;
 	}
+	
 
 	public RationalNumber multiply(RationalNumber other){
 		numerator = numerator * other.numerator;
 		denominator = denominator * other.denominator;
 		RationalNumber product = new RationalNumber(numerator, denominator);
-		product.reduce();
 		return product;
 	}
 
@@ -94,7 +86,6 @@ public class RationalNumber extends RealNumber {
 		numerator = numerator * other.denominator;
 		denominator = denominator * other.numerator;
 		RationalNumber quotient = new RationalNumber(numerator, denominator);
-		quotient.reduce();
 		return quotient;
 	}
 
@@ -104,7 +95,6 @@ public class RationalNumber extends RealNumber {
 		numerator = numerator * (lcm / denominator) + other.numerator * (lcm / other.denominator);
 		denominator = lcm;
 		RationalNumber sum = new RationalNumber(numerator, denominator);
-		sum.reduce();
 		return sum;
 	}
 
@@ -114,7 +104,6 @@ public class RationalNumber extends RealNumber {
 		numerator = numerator * (lcm / denominator) - other.numerator * (lcm / other.denominator);
 		denominator = lcm;
 		RationalNumber difference = new RationalNumber(numerator, denominator);
-		difference.reduce();
 		return difference;
 	}
 		
