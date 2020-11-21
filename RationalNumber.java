@@ -23,7 +23,7 @@ public class RationalNumber extends RealNumber {
 	}
 
 	public double getValue(){
-		return numerator / denominator;
+		return (numerator * 1.0) / (denominator * 1.0);
 	}
 
 	public int getNumerator(){
@@ -49,9 +49,11 @@ public class RationalNumber extends RealNumber {
 	}
 
 	private static int gcd(int a, int b){
-
 		if(a == 0)
 			return 1;
+		if(a < 0)
+			a = a * -1;
+
 		int c = 0;
 		if(b > a){
 			c = b;
@@ -89,8 +91,11 @@ public class RationalNumber extends RealNumber {
 	}
 
 	public RationalNumber divide(RationalNumber other){
+		numerator = numerator * other.denominator;
+		denominator = denominator * other.numerator;
 		RationalNumber quotient = new RationalNumber(numerator, denominator);
-		return quotient.multiply(other.reciprocal());
+		quotient.reduce();
+		return quotient;
 	}
 
 	public RationalNumber add(RationalNumber other){
