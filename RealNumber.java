@@ -24,22 +24,22 @@ public class RealNumber{
 		
 
 	public RealNumber add(RealNumber other){
-		value = value + other.getValue();
-		return new RealNumber(value);
+		double value2 = value + other.getValue();
+		return new RealNumber(value2);
 	}
 
 	public RealNumber multiply(RealNumber other){
-		value = value * other.getValue();
-		return new RealNumber(value);
+		double value2 = value * other.getValue();
+		return new RealNumber(value2);
 	}
 
 	public RealNumber divide(RealNumber other){
-		value = value / other.getValue();
-		return new RealNumber(value);
+		double value2 = value / other.getValue();
+		return new RealNumber(value2);
 	}
 
 	public RealNumber subtract(RealNumber other){
-		value = value - other.getValue();
-		return new RealNumber(value);
+		double value2 = value - other.getValue();
+		return new RealNumber(value2);
 	}
 }
