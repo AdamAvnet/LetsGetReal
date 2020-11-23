@@ -12,7 +12,7 @@ public class RationalNumber extends RealNumber {
 	}
 
 	public double getValue(){
-		return (numerator * 1.0) / (denominator * 1.0);
+		return (getNumerator() * 1.0) / (getDenominator() * 1.0);
 	}
 
 	public int getNumerator(){
@@ -24,20 +24,20 @@ public class RationalNumber extends RealNumber {
 	}
 
 	public RationalNumber reciprocal(){
-		return new RationalNumber(denominator, numerator);
+		return new RationalNumber(getDenominator(), getNumerator());
 	}
 
 	public boolean equals(RationalNumber other){
-		if(numerator == other.numerator && denominator == other.denominator)
+		if(getNumerator() == other.getNumerator() && getDenominator() == other.getDenominator())
 			return true;
 		return false;
 	}
 
 	public String toString(){
-		if(denominator == 1)
-		return "" + numerator;
+		if(getDenominator() == 1)
+		return "" + getNumerator();
 
-		return "" + numerator + "/" + denominator;
+		return "" + getNumerator() + "/" + getDenominator();
 	}
 
 	private static int gcd(int a, int b){
@@ -62,40 +62,40 @@ public class RationalNumber extends RealNumber {
 	}
 
 	private void reduce(){
-		if(denominator == 0 || numerator == 0){
+		if(getDenominator() == 0 || getNumerator() == 0){
 			numerator = 0;
 			denominator = 1;
 		}
 
-		if(denominator < 0){
-			numerator = numerator * -1;
-			denominator = denominator * -1;
+		if(getDenominator() < 0){
+			numerator = getNumerator() * -1;
+			denominator = getDenominator() * -1;
 		}
 
-		int cd = gcd(numerator, denominator);
-		numerator = numerator / cd;
-		denominator = denominator / cd;
+		int cd = gcd(getNumerator(), getDenominator());
+		numerator = getNumerator() / cd;
+		denominator = getDenominator() / cd;
 	}
 	
 
 	public RationalNumber multiply(RationalNumber other){
-		int numerator2 = numerator * other.numerator;
-		int denominator2 = denominator * other.denominator;
+		int numerator2 = getNumerator() * other.getNumerator();
+		int denominator2 = getDenominator() * other.getDenominator();
 		RationalNumber product = new RationalNumber(numerator2, denominator2);
 		return product;
 	}
 
 	public RationalNumber divide(RationalNumber other){
-		int numerator2 = numerator * other.denominator;
-		int denominator2 = denominator * other.numerator;
+		int numerator2 = getNumerator() * other.getDenominator();
+		int denominator2 = getDenominator() * other.getNumerator();
 		RationalNumber quotient = new RationalNumber(numerator2, denominator2);
 		return quotient;
 	}
 
 	public RationalNumber add(RationalNumber other){
 		int lcm = 0;
-		lcm = (denominator * other.denominator) / gcd(denominator, other.denominator);
-		int numerator2 = numerator * (lcm / denominator) + other.numerator * (lcm / other.denominator);
+		lcm = (getDenominator() * other.getDenominator()) / gcd(getDenominator(), other.getDenominator());
+		int numerator2 = getNumerator() * (lcm / getDenominator()) + other.getNumerator() * (lcm / other.getDenominator());
 		int denominator2 = lcm;
 		RationalNumber sum = new RationalNumber(numerator2, denominator2);
 		return sum;
@@ -103,8 +103,8 @@ public class RationalNumber extends RealNumber {
 
 	public RationalNumber subtract(RationalNumber other){
 		int lcm = 0;
-		lcm = (denominator * other.denominator) / gcd(denominator, other.denominator);
-		int numerator2 = numerator * (lcm / denominator) - other.numerator * (lcm / other.denominator);
+		lcm = (getDenominator() * other.getDenominator()) / gcd(getDenominator(), other.getDenominator());
+		int numerator2 = getNumerator() * (lcm / getDenominator()) - other.getNumerator() * (lcm / other.getDenominator());
 		int denominator2 = lcm;
 		RationalNumber difference = new RationalNumber(numerator2, denominator2);
 		return difference;
